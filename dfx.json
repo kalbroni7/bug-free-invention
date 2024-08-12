@@ -1,0 +1,47 @@
+{
+  "canisters": {
+    "frontend": {
+      "dependencies": [
+        "backend",
+        "internet_identity"
+      ],
+      "type": "assets",
+      "frontend": {
+        "entrypoint": "dist/index.html"
+      },
+      "source": [
+        "dist/"
+      ]
+    },
+    "backend": {
+      "dependencies": [
+        "motoko_rust"
+      ],
+      "type": "motoko",
+      "main": "backend/Main.mo"
+    },
+    "internet_identity": {
+      "type": "custom",
+      "candid": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity.did",
+      "wasm": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity_dev.wasm.gz",
+      "remote": {
+        "id": {
+          "ic": "rdmx6-jaaaa-aaaaa-aaadq-cai"
+        }
+      },
+      "frontend": {}
+    },
+    "motoko_rust": {
+      "type": "rust",
+      "package": "motoko_rust",
+      "candid": ".canpack/motoko_rust/service.did",
+      "gzip": true,
+      "canpack": true
+    }
+  },
+  "defaults": {
+    "build": {
+      "packtool": "npm run --silent sources"
+    }
+  }
+}
