@@ -1,0 +1,38 @@
+{
+  "canisters": {
+    "frontend": {
+      "dependencies": ["backend", "internet_identity"],
+      "type": "assets",
+      "frontend": {
+        "entrypoint": "dist/index.html"
+      },
+      "source": ["dist/"]
+    },
+    "backend": {
+      "dependencies": ["eth_util"],
+      "type": "motoko",
+      "main": "canisters/backend/Main.mo"
+    },
+    "eth_util": {
+      "type": "rust",
+      "candid": "canisters/eth_util/eth_util.did",
+      "package": "eth_util"
+    },
+    "internet_identity": {
+      "type": "custom",
+      "candid": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity.did",
+      "wasm": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity_dev.wasm.gz",
+      "remote": {
+        "id": {
+          "ic": "rdmx6-jaaaa-aaaaa-aaadq-cai"
+        }
+      },
+      "frontend": {}
+    }
+  },
+  "defaults": {
+    "build": {
+      "packtool": "npm run --silent sources"
+    }
+  }
+}
